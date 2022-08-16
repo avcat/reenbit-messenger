@@ -5,12 +5,14 @@ import SearchInChats from '../SearchInChats';
 import ChatsList from '../ChatsList';
 import CurrentChat from '../CurrentChat';
 
+import prof_pic from '@prof_pics/profile_1.jpg';
+
 class App extends React.Component {
   state = {
     profiles: [
       {
         profile_id: 1,
-        profile_picture: 'picture.png'
+        profile_picture: prof_pic
       }
     ],
     chats: [
@@ -30,6 +32,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <div className='left'>
