@@ -1,19 +1,22 @@
 import React from 'react';
 import './App.sass';
 
+import ProfileImage from '../ProfileImage';
 import SearchInChats from '../SearchInChats';
 import ChatsList from '../ChatsList';
 import CurrentChat from '../CurrentChat';
-
-import prof_pic from '@prof_pics/profile_1.jpg';
 
 class App extends React.Component {
   state = {
     profiles: [
       {
         profile_id: 1,
-        profile_picture: prof_pic
-      }
+        profile_name: 'Arkadii Vodolazskyi'
+      },
+      {
+        profile_id: 2,
+        profile_name: 'Alice Freeman'
+      },
     ],
     chats: [
       {
@@ -23,7 +26,7 @@ class App extends React.Component {
           {
             message_id: 1,
             message_text: 'Text 1',
-            message_date: Date()
+            message_date: new Date()
           }
         ]
       }
@@ -32,16 +35,23 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+
+    const {
+      chats
+    } = this.state;
+
     return (
-      <div className="App">
+      <div className='App'>
         <div className='left'>
-          <div className='my_profile'>My profile</div>
-          <SearchInChats />
-          <ChatsList />
+          <div className='top'>
+            <ProfileImage profile_id={1} />
+            <ProfileImage profile_id={2} />
+            {/* <SearchInChats /> */}
+          </div>
+          {/* <ChatsList chats={chats} /> */}
         </div>
         <div className='right'>
-          <CurrentChat />
+          {/* <CurrentChat /> */}
         </div>
       </div>
     );

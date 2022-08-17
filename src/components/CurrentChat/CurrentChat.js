@@ -4,7 +4,7 @@ import './CurrentChat.sass';
 class CurrentChat extends React.Component {
   render() {
     return (
-      <div className="CurrentChat">
+      <div className='CurrentChat'>
         CurrentChat
       </div>
     );
