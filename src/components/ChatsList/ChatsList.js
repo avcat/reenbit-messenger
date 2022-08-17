@@ -1,11 +1,19 @@
 import './ChatsList.sass';
 import ChatItem from '../ChatItem';
+import { find_user } from '../../helpers/helper_functions.js';
 
-const ChatsList = ({chats}) => {
+const ChatsList = ({profiles, chats, changeCurrentChat}) => {
 
   const chats_list = chats.length ? (
     <ul className='chats_list'>
-      {chats.map(chat => <ChatItem key={chat.chat_id} chat={chat} />)}
+      {chats.map(chat => {
+        return <ChatItem
+          key={chat.chat_id}
+          profile={find_user(chat.with_user, profiles)}
+          chat={chat}
+          onClick={() => changeCurrentChat(chat.chat_id)}
+        />
+      })}
     </ul>
   ) : (
     <div className='no_chats'>
