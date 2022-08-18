@@ -2,11 +2,12 @@
 	max-width: var(--width-desktop)
 	margin: 0 auto
 	border: 2px solid
+	display: grid
+	grid-template-columns: 300px 1fr
 
-.left
+	> .left
+		.top
+			background-color: var(--bg-secondary)
+			padding: var(--padding-general)
 
-.left .top
-	background-color: var(--bg-secondary)
-	padding: var(--padding-general)
-
-.right
+	> .right

@@ -8,7 +8,7 @@ class SearchInChats extends React.Component {
       <div className='SearchInChats'>
         <div className='search_wrapper'>
           <input type='text' placeholder='Search or start new chat' />
-          <Search className='search' width={50} height={50} fill='#556080' />
+          <Search className='search' width={50} height={50} />
         </div>
       </div>
     );
