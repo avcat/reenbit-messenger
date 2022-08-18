@@ -1,13 +1,22 @@
 .App
+	height: 100vh
+	overflow: hidden
 	max-width: var(--width-desktop)
 	margin: 0 auto
-	border: 2px solid
 	display: grid
-	grid-template-columns: 300px 1fr
+	grid-template-columns: 40% 60%
+	grid-template-rows: 100%
+	border-radius: .5em
 
 	> .left
+		border-right: 1px solid var(--border-primary)
 		.top
 			background-color: var(--bg-secondary)
-			padding: var(--padding-general)
+			padding: 1em
+		.my_profile .ProfileImage
+			.profile_picture
+				cursor: pointer
+			&:hover .profile_picture
+				fill: var(--profile-default-d)
 
 	> .right

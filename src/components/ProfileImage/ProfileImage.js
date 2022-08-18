@@ -6,7 +6,7 @@ import { ReactComponent as Check } from '@img/icons/check.svg';
 const ProfileImage = () => {
   return (
     <div className='ProfileImage'>
-      <ProfileImageDefault className='profile_picture' width={50} height={50} />
+      <ProfileImageDefault className='profile_picture' width={45} height={45} />
       <Check className='check' width={17} height={17} />
     </div>
   );

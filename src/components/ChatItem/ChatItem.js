@@ -15,12 +15,12 @@ const ChatItem = ({profile, chat}) => {
       <h3 className='profile_name'>
         {profile_name}
       </h3>
-      <div className='last_message_text'>
-        {last_message_text}
-      </div>
       <time className='last_message_time' dateTime={last_message.message_date}>
         {last_message_time}
       </time>
+      <div className='last_message_text'>
+        {last_message_text}
+      </div>
     </li>
   );
 }

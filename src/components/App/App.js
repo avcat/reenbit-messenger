@@ -99,7 +99,9 @@ class App extends React.Component {
       <div className='App'>
         <div className='left'>
           <div className='top'>
-            <ProfileImage />
+            <div className='my_profile'>
+              <ProfileImage />
+            </div>
             <SearchInChats />
           </div>
           <ChatsList

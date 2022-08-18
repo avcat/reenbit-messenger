@@ -1,0 +1,54 @@
+.CurrentChat
+	height: 100%
+	background-color: #fafafa
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+	> .top
+		flex-shrink: 0
+		background-color: var(--bg-secondary)
+		padding: .8em 1em
+		border-bottom: 1px solid var(--border-primary)
+		.companion
+			display: flex
+			align-items: center
+			.ProfileImage
+				.profile_picture
+					cursor: pointer
+				&:hover .profile_picture
+					fill: var(--profile-default-d)
+			.profile_name
+				margin-left: .5em
+				font-weight: 500
+	.chat_body
+		flex-grow: 1
+		padding: 1em .5em
+	.messages
+	.message
+		display: grid
+		grid-template-columns: 3em 1fr
+		grid-template-rows: auto auto
+		.ProfileImage
+		.text
+		.time
+			grid-column: 2
+	.chat_message
+		padding: 1.5em
+		flex-shrink: 0
+		background-color: var(--bg-secondary)
+		.floating
+			right: 0
+			transform: translate(-1em, -50%)
+		button
+			padding: 0
+			display: inline-flex
+			align-items: center
+			justify-content: center
+			width: 1.5em
+			height: 1.5em
+			&:hover svg
+				opacity: 1
+				fill: var(--accent)
+			svg
+				transition: all .25s ease
+

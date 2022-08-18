@@ -6,9 +6,11 @@ class SearchInChats extends React.Component {
   render() {
     return (
       <div className='SearchInChats'>
-        <div className='search_wrapper'>
+        <div className='input_wrapper search_wrapper'>
           <input type='text' placeholder='Search or start new chat' />
-          <Search className='search' width={50} height={50} />
+          <span className='floating'>
+            <Search className='search' width={40} height={40} />
+          </span>
         </div>
       </div>
     );

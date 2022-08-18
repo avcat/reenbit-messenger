@@ -45,7 +45,7 @@ class CurrentChat extends React.Component {
               <p className='text'>
                 {message.message_text}
               </p>
-              <time dateTime={message.message_date}>
+              <time className='time' dateTime={message.message_date}>
                 {date_to_format(message.message_date, 'date_short_time_full')}
               </time>
             </li>;
@@ -74,10 +74,12 @@ class CurrentChat extends React.Component {
           {messages_html}
         </div>
 
-        <div className='chat_meesage'>
-          <div className='chat_meesage_wrapper'>
+        <div className='chat_message'>
+          <div className='input_wrapper chat_message_wrapper'>
             <input type='text' placeholder='Type your message' />
-            <Send className='send' width={50} height={50} />
+            <button className='floating'>
+              <Send className='send' width={40} height={40} />
+            </button>
           </div>
         </div>
 
