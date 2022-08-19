@@ -9,7 +9,7 @@ import CurrentChat from '../CurrentChat';
 class App extends React.Component {
   state = {
     current_user: 0,
-    currentChat: null,
+    currentChatId: null,
     profiles: [
       { profile_id: 0, profile_name: 'Arkadii Vodolazskyi' },
       { profile_id: 1, profile_name: 'Steve Jobs' },
@@ -81,11 +81,7 @@ class App extends React.Component {
     ],
   }
 
-  changeCurrentChat = chat_id => {
-    console.log(chat_id);
-    const currentChat = chat_id;
-    this.setState({currentChat});
-  }
+  changeCurrentChat = chat_id => this.setState({currentChatId: chat_id});
 
   render() {
 

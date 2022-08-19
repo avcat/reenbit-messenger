@@ -11,7 +11,7 @@ const ChatsList = ({profiles, chats, changeCurrentChat}) => {
           key={chat.chat_id}
           profile={find_user(chat.with_user, profiles)}
           chat={chat}
-          onClick={() => changeCurrentChat(chat.chat_id)}
+          handleChatClick={() => changeCurrentChat(chat.chat_id)}
         />
       })}
     </ul>

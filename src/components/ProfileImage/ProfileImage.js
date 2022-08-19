@@ -14,7 +14,6 @@ const ProfileImage = ({profile_id}) => {
   ) : (
     <ProfileImageDefault className='profile_picture' />
   );
-  console.log(profile_id, profile_image_html);
 
   return (
     <div className='ProfileImage'>

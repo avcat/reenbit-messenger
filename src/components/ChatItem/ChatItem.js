@@ -2,7 +2,7 @@ import './ChatItem.sass';
 import { date_to_format } from '../../helpers/helper_functions.js';
 import ProfileImage from '../ProfileImage';
 
-const ChatItem = ({profile, chat}) => {
+const ChatItem = ({profile, chat, handleChatClick}) => {
 
   const profile_name = profile.profile_name;
   const last_message = chat.messages[chat.messages.length - 1];
@@ -10,7 +10,7 @@ const ChatItem = ({profile, chat}) => {
   const last_message_time = date_to_format(last_message.message_date, 'date_shortened');
 
   return (
-    <li className='ChatItem'>
+    <li className='ChatItem' onClick={handleChatClick}>
       <ProfileImage profile_id={profile.profile_id} />
       <h3 className='profile_name'>
         {profile_name}
