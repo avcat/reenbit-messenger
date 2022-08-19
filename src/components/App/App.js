@@ -15,7 +15,6 @@ class App extends React.Component {
         companion: { profile_id: 1, profile_name: 'Steve Jobs' },
         messages: [
           {
-            message_id: 1,
             message_owner: 1,
             message_text: 'You are the worst!',
             message_date: new Date('2017-06-12')
@@ -27,19 +26,16 @@ class App extends React.Component {
         companion: { profile_id: 2, profile_name: 'Elon Musk' },
         messages: [
           {
-            message_id: 1,
             message_owner: 2,
             message_text: 'Quickly come to the meeting room 1B, we have a big server issue',
             message_date: new Date('2017-04-22T04:00:00')
           },
           {
-            message_id: 2,
             message_owner: 0,
             message_text: 'I\'m having breakfast right now, can\'t you wait for 10 minutes?',
             message_date: new Date('2017-04-22T04:05:00')
           },
           {
-            message_id: 3,
             message_owner: 2,
             message_text: 'We are losing money! Quick!',
             message_date: new Date('2017-04-22T04:10:00')
@@ -51,7 +47,6 @@ class App extends React.Component {
         companion: { profile_id: 3, profile_name: 'Mark Zuckerberg' },
         messages: [
           {
-            message_id: 1,
             message_owner: 3,
             message_text: 'Quickly come to the meeting room 1B, we have a big server issue.',
             message_date: new Date('2017-03-18')
@@ -63,7 +58,6 @@ class App extends React.Component {
         companion: { profile_id: 4, profile_name: 'Pavel Durov' },
         messages: [
           {
-            message_id: 1,
             message_owner: 4,
             message_text: 'Are there any bananas left in the dining room?',
             message_date: new Date('2017-02-18')
@@ -74,16 +68,34 @@ class App extends React.Component {
   }
 
   change_current_chat = chat_id => {
-    const current_chat = this.state.chats.find(chat => chat.chat_id === chat_id);
-    this.setState({current_chat});
+    this.setState({current_chat_id: chat_id});
   };
+
+  get_current_chat = () => this.state.chats.find(chat => chat.chat_id === this.state.current_chat_id);
+
+  add_to_messages = message_data => {
+    const current_chat_id = this.state.current_chat_id;
+    if (current_chat_id === null) { return; }
+
+    const chats = this.state.chats.map(chat => {
+      return chat.chat_id === this.state.current_chat_id ? ({
+        chat_id: chat.chat_id,
+        companion: chat.companion,
+        messages: [...chat.messages, message_data]
+      }) : chat;
+    });
+
+    this.setState({
+      chats: chats
+    })
+  }
 
   render() {
 
     const {
-      current_chat,
       chats
     } = this.state;
+
 
     return (
       <div className='App'>
@@ -103,7 +115,8 @@ class App extends React.Component {
 
         <div className='right'>
           <CurrentChat
-            chat={current_chat}
+            chat={this.get_current_chat()}
+            add_to_messages={this.add_to_messages}
           />
         </div>
 
