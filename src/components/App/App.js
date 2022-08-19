@@ -73,16 +73,17 @@ class App extends React.Component {
     ],
   }
 
-  change_current_chat = chat_id => this.setState({current_chat_id: chat_id});
+  change_current_chat = chat_id => {
+    const current_chat = this.state.chats.find(chat => chat.chat_id === chat_id);
+    this.setState({current_chat});
+  };
 
   render() {
 
     const {
-      current_chat_id,
+      current_chat,
       chats
     } = this.state;
-
-    const current_chat = chats.find(chat => chat.chat_id === current_chat_id);
 
     return (
       <div className='App'>
