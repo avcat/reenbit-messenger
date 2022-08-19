@@ -4,7 +4,8 @@ const date_to = {
 	short_year: date => date.toLocaleString('en-US', { year: '2-digit' })
 }
 
-export const date_to_format = (date, type) => {
+export const date_to_format = (date_raw, type) => {
+	const date = typeof(date_raw) === 'string' ? new Date(date_raw) : date_raw;
 	switch (type) {
 		case 'date_shortened':
 			return `${date_to.short_month(date)} ${date.getDate()}, ${date.getFullYear()}`;

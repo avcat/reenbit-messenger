@@ -86,9 +86,10 @@ class App extends React.Component {
       }) : chat;
     });
 
-    this.setState({
-      chats: chats
-    })
+    this.setState({chats: chats});
+    console.log('added to messages', chats)
+    this.write_into_local_storage();
+    console.log('wrote into storage', JSON.parse(localStorage.getItem('chats')))
   }
 
   change_search_query = search_query => this.setState({search_query});
@@ -98,6 +99,22 @@ class App extends React.Component {
     return search_query ? (
       this.state.chats.filter(chat => chat.companion.profile_name.toLowerCase().includes(search_query.toLowerCase()))
     ) : this.state.chats;
+  }
+
+  write_into_local_storage = () => {
+    const chats = this.state.chats;
+    localStorage.setItem('chats', JSON.stringify(chats));
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('chats')) {
+      const chats = JSON.parse(localStorage.getItem('chats'));
+      this.setState({
+        chats: chats
+      });
+    } else {
+      this.write_into_local_storage();
+    }
   }
 
   render() {

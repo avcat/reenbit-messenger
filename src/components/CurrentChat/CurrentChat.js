@@ -57,10 +57,13 @@ const CurrentChat = ({chat, add_to_messages}) => {
         message_text: data.value,
         message_date: new Date()
       };
-      const delay_seconds = get_random_int_inclusive(10, 15);
+
+      const delay_seconds = get_random_int_inclusive(1, 2);
       setTimeout(() => {
-        add_to_messages(message_data)
+        add_to_messages(message_data);
+        console.log('sent message', message_data)
       }, delay_seconds * 1000);
+
     } catch (err) {
       console.log(err.message);
     }
@@ -76,6 +79,8 @@ const CurrentChat = ({chat, add_to_messages}) => {
       message_text: message_text,
       message_date: new Date()
     };
+    e.target.querySelector("[name=message]").value = '';
+
     add_to_messages(message_data);
     get_response();
   }
@@ -91,7 +96,7 @@ const CurrentChat = ({chat, add_to_messages}) => {
         {messages_html}
       </div>
 
-      <div className='chat_message'>
+      <div className={`chat_message ${chat ? '' : 'disabled'}`}>
         <form className='input_wrapper chat_message_wrapper' onSubmit={on_message_submit}>
           <input type='text' name='message' placeholder='Type your message' />
           <button className='floating'>
