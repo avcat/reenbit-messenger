@@ -2,7 +2,7 @@ import './ChatsList.sass';
 import ChatItem from '../ChatItem';
 import { find_user } from '../../helpers/helper_functions.js';
 
-const ChatsList = ({profiles, chats, changeCurrentChat}) => {
+const ChatsList = ({profiles, chats, change_current_chat}) => {
 
   const chats_list = chats.length ? (
     <ul className='chats_list'>
@@ -11,7 +11,7 @@ const ChatsList = ({profiles, chats, changeCurrentChat}) => {
           key={chat.chat_id}
           profile={find_user(chat.with_user, profiles)}
           chat={chat}
-          handleChatClick={() => changeCurrentChat(chat.chat_id)}
+          handle_chat_click={() => change_current_chat(chat.chat_id)}
         />
       })}
     </ul>

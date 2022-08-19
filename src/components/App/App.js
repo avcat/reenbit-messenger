@@ -9,7 +9,7 @@ import CurrentChat from '../CurrentChat';
 class App extends React.Component {
   state = {
     current_user: 0,
-    currentChatId: null,
+    current_chat_id: null,
     profiles: [
       { profile_id: 0, profile_name: 'Arkadii Vodolazskyi' },
       { profile_id: 1, profile_name: 'Steve Jobs' },
@@ -81,7 +81,7 @@ class App extends React.Component {
     ],
   }
 
-  changeCurrentChat = chat_id => this.setState({currentChatId: chat_id});
+  change_current_chat = chat_id => this.setState({current_chat_id: chat_id});
 
   render() {
 
@@ -103,14 +103,14 @@ class App extends React.Component {
           <ChatsList
             profiles={profiles}
             chats={chats}
-            changeCurrentChat={this.changeCurrentChat}
+            change_current_chat={this.change_current_chat}
           />
         </div>
         <div className='right'>
           <CurrentChat
             chat={chats[1]}
             profile={profiles[2]}
-            myProfile={current_user}
+            my_profile={current_user}
           />
         </div>
       </div>

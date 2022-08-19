@@ -9,14 +9,14 @@ class CurrentChat extends React.Component {
   state = {
     messages: [],
     profile: [],
-    myProfile: null
+    my_profile: null
   }
 
   componentDidMount() {
     this.setState({
       messages: this.props.chat.messages,
       profile: this.props.profile,
-      myProfile: this.props.myProfile
+      my_profile: this.props.my_profile
     })
   }
 
@@ -33,7 +33,7 @@ class CurrentChat extends React.Component {
       <ul className='messages'>
         {
           messages.map(message => {
-            const is_mine = message.message_owner === this.state.myProfile;
+            const is_mine = message.message_owner === this.state.my_profile;
             const profile_image = is_mine ? null : <ProfileImage profile_id={profile.profile_id} />;
 
             return <li
