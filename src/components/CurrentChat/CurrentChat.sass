@@ -23,19 +23,50 @@
 	.chat_body
 		flex-grow: 1
 		padding: 1em .5em
-	.messages
 	.message
 		display: grid
 		grid-template-columns: 3em 1fr
 		grid-template-rows: auto auto
+		gap: .5em
+		padding: 0 2em 0 0
+		align-items: flex-start
+		&:not(:first-child)
+			margin-top: 1em
 		.ProfileImage
+			display: inline-flex
+			justify-content: center
+			align-items: flex-start
+		.text_wrapper
+			display: inline-flex
+			align-items: center
+			padding-top: .3em
 		.text
+			padding: .8em 1em
+			background-color: var(--msg-bg-secondary)
+			color: var(--text-secondary)
+			border-radius: 2em
 		.time
 			grid-column: 2
+			font-size: .8em
+			padding: .3em 0 0 1.3em
+		&.mine
+			padding: 0 0 0 2em
+			text-align: right
+			.text_wrapper
+				grid-column: span 2
+				justify-content: flex-end
+			.text
+				background-color: var(--msg-bg-primary)
+				color: var(--text-primary)
+			.time
+				padding: .3em .5em 0 0
 	.chat_message
+		border-top: 1px solid var(--border-primary)
 		padding: 1.5em
 		flex-shrink: 0
 		background-color: var(--bg-secondary)
+		input
+			border-radius: 1.25em
 		.floating
 			right: 0
 			transform: translate(-1em, -50%)

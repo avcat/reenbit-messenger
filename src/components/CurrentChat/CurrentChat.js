@@ -42,9 +42,11 @@ class CurrentChat extends React.Component {
             >
               {profile_image}
 
-              <p className='text'>
-                {message.message_text}
-              </p>
+              <div className='text_wrapper'>
+                <p className='text'>
+                  {message.message_text}
+                </p>
+              </div>
               <time className='time' dateTime={message.message_date}>
                 {date_to_format(message.message_date, 'date_short_time_full')}
               </time>

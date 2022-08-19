@@ -37,7 +37,7 @@ class App extends React.Component {
           {
             message_id: 1,
             message_owner: 2,
-            message_text: 'Quickly come to the meeting room 1B, we have a big server issue.',
+            message_text: 'Quickly come to the meeting room 1B, we have a big server issue',
             message_date: new Date('2017-04-22T04:00:00')
           },
           {
