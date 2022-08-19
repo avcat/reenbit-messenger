@@ -9,6 +9,7 @@ import CurrentChat from '../CurrentChat';
 class App extends React.Component {
   state = {
     current_chat_id: null,
+    search_query: null,
     chats: [
       {
         chat_id: 0,
@@ -90,12 +91,16 @@ class App extends React.Component {
     })
   }
 
+  change_search_query = search_query => this.setState({search_query});
+
+  use_search_query = () => {
+    const search_query = this.state.search_query;
+    return search_query ? (
+      this.state.chats.filter(chat => chat.companion.profile_name.toLowerCase().includes(search_query.toLowerCase()))
+    ) : this.state.chats;
+  }
+
   render() {
-
-    const {
-      chats
-    } = this.state;
-
 
     return (
       <div className='App'>
@@ -105,10 +110,10 @@ class App extends React.Component {
             <div className='my_profile'>
               <ProfileImage />
             </div>
-            <SearchInChats />
+            <SearchInChats change_search_query={this.change_search_query} />
           </div>
           <ChatsList
-            chats={chats}
+            chats={this.use_search_query()}
             change_current_chat={this.change_current_chat}
           />
         </div>
@@ -122,6 +127,7 @@ class App extends React.Component {
 
       </div>
     );
+
   }
 }
 

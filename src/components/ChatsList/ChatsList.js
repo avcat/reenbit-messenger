@@ -15,7 +15,7 @@ const ChatsList = ({chats, change_current_chat}) => {
     </ul>
   ) : (
     <div className='no_chats'>
-      You do not have any chats yet.
+      No chats found.
     </div>
   );
 
