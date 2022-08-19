@@ -8,19 +8,11 @@ import CurrentChat from '../CurrentChat';
 
 class App extends React.Component {
   state = {
-    current_user: 0,
     current_chat_id: null,
-    profiles: [
-      { profile_id: 0, profile_name: 'Arkadii Vodolazskyi' },
-      { profile_id: 1, profile_name: 'Steve Jobs' },
-      { profile_id: 2, profile_name: 'Elon Musk' },
-      { profile_id: 3, profile_name: 'Mark Zuckerberg' },
-      { profile_id: 4, profile_name: 'Pavel Durov' },
-    ],
     chats: [
       {
         chat_id: 0,
-        with_user: 1,
+        companion: { profile_id: 1, profile_name: 'Steve Jobs' },
         messages: [
           {
             message_id: 1,
@@ -32,7 +24,7 @@ class App extends React.Component {
       },
       {
         chat_id: 1,
-        with_user: 2,
+        companion: { profile_id: 2, profile_name: 'Elon Musk' },
         messages: [
           {
             message_id: 1,
@@ -56,7 +48,7 @@ class App extends React.Component {
       },
       {
         chat_id: 2,
-        with_user: 3,
+        companion: { profile_id: 3, profile_name: 'Mark Zuckerberg' },
         messages: [
           {
             message_id: 1,
@@ -68,7 +60,7 @@ class App extends React.Component {
       },
       {
         chat_id: 3,
-        with_user: 4,
+        companion: { profile_id: 4, profile_name: 'Pavel Durov' },
         messages: [
           {
             message_id: 1,
@@ -86,13 +78,15 @@ class App extends React.Component {
   render() {
 
     const {
-      profiles,
-      chats,
-      current_user
+      current_chat_id,
+      chats
     } = this.state;
+
+    const current_chat = chats.find(chat => chat.chat_id === current_chat_id);
 
     return (
       <div className='App'>
+
         <div className='left'>
           <div className='top'>
             <div className='my_profile'>
@@ -101,18 +95,17 @@ class App extends React.Component {
             <SearchInChats />
           </div>
           <ChatsList
-            profiles={profiles}
             chats={chats}
             change_current_chat={this.change_current_chat}
           />
         </div>
+
         <div className='right'>
           <CurrentChat
-            chat={chats[1]}
-            profile={profiles[2]}
-            my_profile={current_user}
+            chat={current_chat}
           />
         </div>
+
       </div>
     );
   }

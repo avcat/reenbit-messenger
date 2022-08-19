@@ -7,69 +7,69 @@ import { date_to_format } from '../../helpers/helper_functions.js';
 class CurrentChat extends React.Component {
 
   state = {
-    messages: [],
-    profile: [],
-    my_profile: null
+    chat: null
   }
 
   componentDidMount() {
     this.setState({
-      messages: this.props.chat.messages,
-      profile: this.props.profile,
-      my_profile: this.props.my_profile
+      chat: this.props.chat
     })
   }
 
   render() {
 
     const {
-      messages,
-      profile,
+      chat
     } = this.state;
 
-    const profile_name = profile.profile_name;
+    const companion = chat ? chat.companion : null;
+    const messages = chat ? chat.messages : null;
 
-    const messages_html = messages.length ? (
-      <ul className='messages'>
-        {
-          messages.map(message => {
-            const is_mine = message.message_owner === this.state.my_profile;
-            const profile_image = is_mine ? null : <ProfileImage profile_id={profile.profile_id} />;
+    const messages_html = messages ? (
+      messages.length ? (
+        <ul className='messages'>
+          {
+            messages.map(message => {
+              const is_mine = message.message_owner === 0;
+              const profile_image = is_mine ? null : <ProfileImage profile_id={message.message_owner} />;
 
-            return <li
-              key={message.message_id}
-              className={`message ${is_mine ? 'mine' : ''}`}
-            >
-              {profile_image}
+              return <li
+                key={message.message_id}
+                className={`message ${is_mine ? 'mine' : ''}`}
+              >
+                {profile_image}
 
-              <div className='text_wrapper'>
-                <p className='text'>
-                  {message.message_text}
-                </p>
-              </div>
-              <time className='time' dateTime={message.message_date}>
-                {date_to_format(message.message_date, 'date_short_time_full')}
-              </time>
-            </li>;
-          })
-        }
-      </ul>
-    ) : (
-      <div className='no_messages'>
-        There are no messages in this chat yet.
+                <div className='text_wrapper'>
+                  <p className='text'>
+                    {message.message_text}
+                  </p>
+                </div>
+                <time className='time' dateTime={message.message_date}>
+                  {date_to_format(message.message_date, 'date_short_time_full')}
+                </time>
+              </li>;
+            })
+          }
+        </ul>
+      ) : (<div className='no_messages'>There are no messages in this chat.</div>)
+    ) : (<div className='no_chat_selected'>No chat selected.</div>);
+
+    const companion_html = companion ? (
+      <div className='companion'>
+        <ProfileImage profile_id={companion.profile_id} />
+        <h3 className='profile_name'>
+          {companion.profile_name}
+        </h3>
       </div>
+    ) : (
+      <div className='no_companion'></div>
     );
 
     return (
       <div className='CurrentChat'>
 
         <div className='top'>
-          <div className='companion'>
-            <ProfileImage profile_id={profile.profile_id} />
-            <h3 className='profile_name'>
-              {profile_name}
-            </h3>
-          </div>
+          {companion_html}
         </div>
 
         <div className='chat_body'>

@@ -14,5 +14,3 @@ export const date_to_format = (date, type) => {
 			return date;
 	}
 }
-
-export const find_user = (id, users) => (users.filter(user => user.profile_id === id))[0];
