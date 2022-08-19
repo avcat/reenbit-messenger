@@ -34,7 +34,7 @@ class CurrentChat extends React.Component {
         {
           messages.map(message => {
             const is_mine = message.message_owner === this.state.myProfile;
-            const profile_image = is_mine ? null : <ProfileImage />;
+            const profile_image = is_mine ? null : <ProfileImage profile_id={profile.profile_id} />;
 
             return <li
               key={message.message_id}
@@ -65,7 +65,7 @@ class CurrentChat extends React.Component {
 
         <div className='top'>
           <div className='companion'>
-            <ProfileImage />
+            <ProfileImage profile_id={profile.profile_id} />
             <h3 className='profile_name'>
               {profile_name}
             </h3>

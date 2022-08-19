@@ -11,7 +11,7 @@ const ChatItem = ({profile, chat}) => {
 
   return (
     <li className='ChatItem'>
-      <ProfileImage />
+      <ProfileImage profile_id={profile.profile_id} />
       <h3 className='profile_name'>
         {profile_name}
       </h3>

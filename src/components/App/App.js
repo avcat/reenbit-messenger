@@ -12,10 +12,10 @@ class App extends React.Component {
     currentChat: null,
     profiles: [
       { profile_id: 0, profile_name: 'Arkadii Vodolazskyi' },
-      { profile_id: 1, profile_name: 'Alice Freeman' },
-      { profile_id: 2, profile_name: 'Josefina' },
-      { profile_id: 3, profile_name: 'Velazquez' },
-      { profile_id: 4, profile_name: 'Barrera' },
+      { profile_id: 1, profile_name: 'Steve Jobs' },
+      { profile_id: 2, profile_name: 'Elon Musk' },
+      { profile_id: 3, profile_name: 'Mark Zuckerberg' },
+      { profile_id: 4, profile_name: 'Pavel Durov' },
     ],
     chats: [
       {
