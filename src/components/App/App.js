@@ -103,16 +103,20 @@ class App extends React.Component {
 
   change_search_query = search_query => this.setState({search_query});
 
-  write_into_local_storage = chats => localStorage.setItem('chats', JSON.stringify(chats));
+  write_into_local_storage = chats => {
+    if (!chats || !chats.length) { return; }
+    localStorage.setItem('chats', JSON.stringify(chats));
+  };
 
   componentDidMount() {
-    if (localStorage.getItem('chats')) {
-      const chats = JSON.parse(localStorage.getItem('chats'));
+    const storage_chats = localStorage.getItem('chats');
+    if (storage_chats) {
+      const chats = JSON.parse(storage_chats);
       this.setState({
         chats: chats
       });
     } else {
-      this.write_into_local_storage();
+      this.write_into_local_storage(this.state.chats);
     }
   }
 

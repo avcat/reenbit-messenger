@@ -4,6 +4,8 @@ const clientId = '13577003509-b8gn2stg4h7e0ot9bmq63p0hsh7dimr1.apps.googleuserco
 
 const LogInOutGoogle = () => {
 
+  // TODO: refactor https://developers.google.com/identity/gsi/web/guides/migration
+
   const [loading, setLoading] = useState('Loading...');
   const [user, setUser] = useState(null);
 
