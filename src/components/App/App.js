@@ -96,16 +96,13 @@ class App extends React.Component {
 
     const sorted_chats = this.get_sorted_chats(chats);
 
-    this.setState({chats: sorted_chats}); // TODO: Rerender ChatsList
-    this.write_into_local_storage();
+    this.setState({chats: sorted_chats});
+    this.write_into_local_storage(chats);
   }
 
   change_search_query = search_query => this.setState({search_query});
 
-  write_into_local_storage = () => {
-    const chats = this.state.chats;
-    localStorage.setItem('chats', JSON.stringify(chats));
-  }
+  write_into_local_storage = chats => localStorage.setItem('chats', JSON.stringify(chats));
 
   componentDidMount() {
     if (localStorage.getItem('chats')) {
