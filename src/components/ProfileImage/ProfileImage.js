@@ -8,7 +8,7 @@ const ProfileImage = ({profile_id}) => {
   const profile_image_html = profile_id ? (
     <img
       className='profile_picture'
-      src={`/assets/images/profile_pics/profile_${profile_id}.jpg`}
+      src={`./assets/images/profile_pics/profile_${profile_id}.jpg`}
       alt='profile avatar'
     />
   ) : (
