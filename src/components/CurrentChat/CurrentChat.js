@@ -2,9 +2,10 @@ import React from 'react';
 import './CurrentChat.sass';
 import ProfileImage from '../ProfileImage';
 import { ReactComponent as Send } from '@img/icons/send.svg';
+import { ReactComponent as ArrowLeft } from '@img/icons/arrow_left.svg';
 import { date_to_format, get_random_int_inclusive } from '../../helpers/helper_functions.js';
 
-const CurrentChat = ({chat, add_to_messages}) => {
+const CurrentChat = ({chat, add_to_messages, hide_current_chat}) => {
 
   const companion = chat ? chat.companion : null;
   const messages = chat ? chat.messages : null;
@@ -40,6 +41,9 @@ const CurrentChat = ({chat, add_to_messages}) => {
 
   const companion_html = companion ? (
     <div className='companion'>
+      <button className='back_to_chats' onClick={hide_current_chat}>
+        <ArrowLeft width={24} height={24} />
+      </button>
       <ProfileImage profile_id={companion.profile_id} />
       <h3 className='profile_name'>
         {companion.profile_name}
@@ -61,7 +65,6 @@ const CurrentChat = ({chat, add_to_messages}) => {
       const delay_seconds = get_random_int_inclusive(1, 2);
       setTimeout(() => {
         add_to_messages(message_data);
-        console.log('sent message', message_data)
       }, delay_seconds * 1000);
 
     } catch (err) {

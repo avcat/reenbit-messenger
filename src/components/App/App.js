@@ -68,11 +68,17 @@ class App extends React.Component {
     ],
   }
 
-  change_current_chat = chat_id => {
-    this.setState({current_chat_id: chat_id});
-  };
+  change_current_chat = chat_id => this.setState({current_chat_id: chat_id});
+
+  hide_current_chat = () => this.setState({current_chat_id: null});
 
   get_current_chat = () => this.state.chats.find(chat => chat.chat_id === this.state.current_chat_id);
+
+  filter_by_date_func = (chat_1, chat_2) => {
+    const date_1 = chat_1.messages[chat_1.messages.length - 1].message_date;
+    const date_2 = chat_2.messages[chat_2.messages.length - 1].message_date;
+    return date_1 < date_2;
+  };
 
   add_to_messages = message_data => {
     const current_chat_id = this.state.current_chat_id;
@@ -86,19 +92,22 @@ class App extends React.Component {
       }) : chat;
     });
 
-    this.setState({chats: chats});
-    console.log('added to messages', chats)
+    const sorted_chats = chats.sort(this.filter_by_date_func);
+
+    this.setState({chats: sorted_chats}); // TODO: Rerender ChatsList
     this.write_into_local_storage();
-    console.log('wrote into storage', JSON.parse(localStorage.getItem('chats')))
   }
 
   change_search_query = search_query => this.setState({search_query});
 
   use_search_query = () => {
     const search_query = this.state.search_query;
-    return search_query ? (
+
+    const searched_chats = search_query ? (
       this.state.chats.filter(chat => chat.companion.profile_name.toLowerCase().includes(search_query.toLowerCase()))
     ) : this.state.chats;
+
+    return searched_chats;
   }
 
   write_into_local_storage = () => {
@@ -119,8 +128,12 @@ class App extends React.Component {
 
   render() {
 
+    const {
+      current_chat_id
+    } = this.state;
+
     return (
-      <div className='App'>
+      <div className={`App ${current_chat_id === null ? '' : 'showing_chat'}`}>
 
         <div className='left'>
           <div className='top'>
@@ -139,6 +152,7 @@ class App extends React.Component {
           <CurrentChat
             chat={this.get_current_chat()}
             add_to_messages={this.add_to_messages}
+            hide_current_chat={this.hide_current_chat}
           />
         </div>
 

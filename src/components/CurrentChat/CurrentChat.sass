@@ -13,6 +13,20 @@
 		.companion
 			display: flex
 			align-items: center
+			.back_to_chats
+				margin-right: .8em
+				width: 2.8em
+				height: 2.8em
+				border-radius: 100%
+				display: inline-flex
+				align-items: center
+				justify-content: center
+				@media (min-width: 769px)
+					display: none
+				svg
+					stroke: var(--text-primary)
+				&:hover svg
+					stroke: var(--accent)
 			.ProfileImage
 				.profile_picture
 					cursor: pointer
