@@ -74,11 +74,13 @@ class App extends React.Component {
 
   get_current_chat = () => this.state.chats.find(chat => chat.chat_id === this.state.current_chat_id);
 
-  filter_by_date_func = (chat_1, chat_2) => {
-    const date_1 = chat_1.messages[chat_1.messages.length - 1].message_date;
-    const date_2 = chat_2.messages[chat_2.messages.length - 1].message_date;
-    return date_1 < date_2;
+  sort_by_date_func = (chat_1, chat_2) => {
+    const date_1 = new Date(chat_1.messages[chat_1.messages.length - 1].message_date);
+    const date_2 = new Date(chat_2.messages[chat_2.messages.length - 1].message_date);
+    return date_1.getTime() < date_2.getTime();
   };
+
+  get_sorted_chats = chats => chats.sort(this.sort_by_date_func);
 
   add_to_messages = message_data => {
     const current_chat_id = this.state.current_chat_id;
@@ -92,23 +94,13 @@ class App extends React.Component {
       }) : chat;
     });
 
-    const sorted_chats = chats.sort(this.filter_by_date_func);
+    const sorted_chats = this.get_sorted_chats(chats);
 
     this.setState({chats: sorted_chats}); // TODO: Rerender ChatsList
     this.write_into_local_storage();
   }
 
   change_search_query = search_query => this.setState({search_query});
-
-  use_search_query = () => {
-    const search_query = this.state.search_query;
-
-    const searched_chats = search_query ? (
-      this.state.chats.filter(chat => chat.companion.profile_name.toLowerCase().includes(search_query.toLowerCase()))
-    ) : this.state.chats;
-
-    return searched_chats;
-  }
 
   write_into_local_storage = () => {
     const chats = this.state.chats;
@@ -129,8 +121,18 @@ class App extends React.Component {
   render() {
 
     const {
-      current_chat_id
+      current_chat_id,
+      search_query,
+      chats
     } = this.state;
+
+    const get_filtered_chats = chats => {
+      const searched_chats = search_query ? (
+        chats.filter(chat => chat.companion.profile_name.toLowerCase().includes(search_query.toLowerCase()))
+      ) : chats;
+      return searched_chats;
+    }
+    const filtered_chats = get_filtered_chats(chats);
 
     return (
       <div className={`App ${current_chat_id === null ? '' : 'showing_chat'}`}>
@@ -143,7 +145,7 @@ class App extends React.Component {
             <SearchInChats change_search_query={this.change_search_query} />
           </div>
           <ChatsList
-            chats={this.use_search_query()}
+            chats={filtered_chats}
             change_current_chat={this.change_current_chat}
           />
         </div>
