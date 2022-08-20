@@ -3,7 +3,7 @@ import './ProfileImage.sass';
 import { ReactComponent as ProfileImageDefault } from '@img/icons/profile_picture_default.svg';
 import { ReactComponent as Check } from '@img/icons/check.svg';
 
-const ProfileImage = ({profile_id}) => {
+const ProfileImage = ({profile_id, profile_image_url}) => {
 
   const profile_image_html = profile_id ? (
     <img
@@ -11,9 +11,13 @@ const ProfileImage = ({profile_id}) => {
       src={`./assets/images/profile_pics/profile_${profile_id}.jpg`}
       alt='profile avatar'
     />
-  ) : (
-    <ProfileImageDefault className='profile_picture' />
-  );
+  ) : profile_image_url ? (
+    <img
+      className='profile_picture'
+      src={profile_image_url}
+      alt='profile avatar'
+    />
+  ) : <ProfileImageDefault className='profile_picture' />;
 
   return (
     <div className='ProfileImage'>

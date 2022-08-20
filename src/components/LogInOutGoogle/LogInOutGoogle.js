@@ -1,62 +1,48 @@
-import React, { useState } from 'react';
+import './LogInOutGoogle.sass';
+import React, { useState, useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-const clientId = '13577003509-b8gn2stg4h7e0ot9bmq63p0hsh7dimr1.apps.googleusercontent.com';
+import { gapi } from 'gapi-script';
+import ProfileImage from '../ProfileImage';
 
 const LogInOutGoogle = () => {
 
-  // TODO: refactor https://developers.google.com/identity/gsi/web/guides/migration
+  const [profile, setProfile] = useState([]);
+  const clientId = '509918767552-043nja3ged896s2oj5agqhm86oasmvdr.apps.googleusercontent.com';
+  useEffect(() => {
+    const initClient = () => {
+      gapi.client.init({
+        clientId: clientId,
+        scope: 'https://www.googleapis.com/auth/userinfo.profile'
+      });
+    };
+    gapi.load('client:auth2', initClient);
+  });
 
-  const [loading, setLoading] = useState('Loading...');
-  const [user, setUser] = useState(null);
-
-  const handleLoginSuccess = (response) => {
-    console.log('Login Success ', response);
-    setUser(response.profileObj);
-    setLoading();
-  }
-
-  const handleLoginFailure = error => {
-    console.log('Login Failure ', error);
-    setLoading();
-  }
-
-  const handleLogoutSuccess = (response) => {
-    console.log('Logout Success ', response);
-    setUser(null);
-  }
-
-  const handleLogoutFailure = error => {
-    console.log('Logout Failure ', error);
-  }
-
-  const handleRequest = () => {
-    setLoading('Loading...');
-  }
-
-  const handleAutoLoadFinished = () => {
-    setLoading();
-  }
+  const onSuccess = res => setProfile(res.profileObj);
+  const onFailure = err => console.log('failed', err);
+  const logOut = () => setProfile(null);
+  const is_logged_in = profile && !Array.isArray(profile);
 
   return (
-    <div>
-      {user ? <div>
-        <div className='name'>Welcome {user.name}!</div>
-        <GoogleLogout
-          clientId={clientId}
-          onLogoutSuccess={handleLogoutSuccess}
-          onFailure={handleLogoutFailure}
-        />
-        <pre>{JSON.stringify(user, null, 2)}</pre>
-      </div> :
+    <div className={`my_profile ${is_logged_in ? 'logged_in' : ''}`}>
+      {is_logged_in ? (
+        <div className='profile_info'>
+          <ProfileImage profile_image_url={profile.imageUrl} />
+          <p className='name'>
+            {profile.name}
+          </p>
+          <GoogleLogout className='log_out' clientId={clientId} buttonText="Log out" onLogoutSuccess={logOut} />
+        </div>
+      ) : (
         <GoogleLogin
           clientId={clientId}
-          buttonText={loading}
-          onSuccess={handleLoginSuccess}
-          onFailure={handleLoginFailure}
-          onRequest={handleRequest}
-          onAutoLoadFinished={handleAutoLoadFinished}
+          buttonText="Sign in with Google"
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          cookiePolicy={'single_host_origin'}
           isSignedIn={true}
-        />}
+        />
+      )}
     </div>
   );
 }

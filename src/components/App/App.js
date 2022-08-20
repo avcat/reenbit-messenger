@@ -141,17 +141,13 @@ class App extends React.Component {
 
         <div className='left'>
           <div className='top'>
-            <div className='my_profile'>
-              <ProfileImage />
-            </div>
+            <LogInOutGoogle />
             <SearchInChats change_search_query={this.change_search_query} />
           </div>
           <ChatsList
             chats={filtered_chats}
             change_current_chat={this.change_current_chat}
           />
-          {/* TODO: test login with Google, add styles */}
-          <LogInOutGoogle />
         </div>
 
         <div className='right'>
