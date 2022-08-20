@@ -5,6 +5,7 @@ import ProfileImage from '../ProfileImage';
 import SearchInChats from '../SearchInChats';
 import ChatsList from '../ChatsList';
 import CurrentChat from '../CurrentChat';
+import LogInOutGoogle from '../LogInOutGoogle';
 
 class App extends React.Component {
   state = {
@@ -145,6 +146,8 @@ class App extends React.Component {
             chats={filtered_chats}
             change_current_chat={this.change_current_chat}
           />
+          {/* TODO: test login with Google, add styles */}
+          <LogInOutGoogle />
         </div>
 
         <div className='right'>
