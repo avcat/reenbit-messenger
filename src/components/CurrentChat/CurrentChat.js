@@ -62,7 +62,7 @@ const CurrentChat = ({chat, add_to_messages, hide_current_chat}) => {
         message_date: new Date()
       };
 
-      const delay_seconds = get_random_int_inclusive(1, 2);
+      const delay_seconds = get_random_int_inclusive(10, 15);
       setTimeout(() => {
         add_to_messages(message_data);
       }, delay_seconds * 1000);

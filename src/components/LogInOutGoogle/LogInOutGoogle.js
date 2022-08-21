@@ -11,8 +11,8 @@ const LogInOutGoogle = () => {
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
-        clientId: clientId,
-        scope: 'https://www.googleapis.com/auth/userinfo.profile'
+          clientId: clientId,
+          scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me'
       });
     };
     gapi.load('client:auth2', initClient);
