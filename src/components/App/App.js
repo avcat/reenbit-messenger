@@ -83,12 +83,10 @@ class App extends React.Component {
 
   get_sorted_chats = chats => chats.sort(this.sort_by_date_func);
 
-  add_to_messages = message_data => {
-    const current_chat_id = this.state.current_chat_id;
-    if (current_chat_id === null) { return; }
+  add_to_messages = (message_data, to_chat_id) => {
 
     const chats = this.state.chats.map(chat => {
-      return chat.chat_id === this.state.current_chat_id ? ({
+      return chat.chat_id === to_chat_id ? ({
         chat_id: chat.chat_id,
         companion: chat.companion,
         messages: [...chat.messages, message_data]
@@ -96,6 +94,7 @@ class App extends React.Component {
     });
 
     const sorted_chats = this.get_sorted_chats(chats);
+    console.log('sorted, new message', message_data);
 
     this.setState({chats: sorted_chats});
     this.write_into_local_storage(chats);

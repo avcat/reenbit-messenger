@@ -51,20 +51,22 @@ const CurrentChat = ({chat, add_to_messages, hide_current_chat}) => {
     </div>
   ) : (<div className='no_companion'></div>);
 
-  const get_response = async () => {
+  const get_response = async delay_seconds => {
+
     try {
       const response = await fetch('https://api.chucknorris.io/jokes/random');
       const data = await response.json();
 
+      const date = new Date();
+      date.setSeconds(date.getSeconds() + delay_seconds)
       const message_data = {
         message_owner: companion.profile_id,
         message_text: data.value,
-        message_date: new Date()
+        message_date: date
       };
 
-      const delay_seconds = get_random_int_inclusive(10, 15);
       setTimeout(() => {
-        add_to_messages(message_data);
+        add_to_messages(message_data, chat.chat_id);
       }, delay_seconds * 1000);
 
     } catch (err) {
@@ -77,15 +79,17 @@ const CurrentChat = ({chat, add_to_messages, hide_current_chat}) => {
     const form_data = new FormData(e.target);
     const message_text = form_data.get('message');
 
+    const date = new Date();
     const message_data = {
       message_owner: 0,
       message_text: message_text,
-      message_date: new Date()
+      message_date: date
     };
     e.target.querySelector("[name=message]").value = '';
 
-    add_to_messages(message_data);
-    get_response();
+    add_to_messages(message_data, chat.chat_id);
+    const delay_seconds = get_random_int_inclusive(10, 15);
+    get_response(delay_seconds);
   }
 
   return (
