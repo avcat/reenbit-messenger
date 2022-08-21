@@ -33,14 +33,17 @@ const LogInOutGoogle = () => {
           <GoogleLogout className='log_out' clientId={clientId} buttonText="Log out" onLogoutSuccess={logOut} />
         </div>
       ) : (
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="Sign in with Google"
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
-        />
+        <div className='profile_info'>
+          <ProfileImage />
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Sign in with Google"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn={true}
+          />
+        </div>
       )}
 
     </div>
