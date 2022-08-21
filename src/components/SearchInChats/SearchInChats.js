@@ -2,9 +2,8 @@ import './SearchInChats.sass';
 import { ReactComponent as Search } from '@img/icons/search.svg';
 
 const SearchInChats = ({change_search_query}) => {
-  const on_search_change = e => {
-    change_search_query(e.target.value);
-  }
+
+  const on_search_change = e => change_search_query(e.target.value);
 
   return (
     <div className='SearchInChats'>

@@ -14,17 +14,13 @@ const ChatsList = ({chats, change_current_chat}) => {
       })}
     </ul>
   ) : (
-    <div className='no_chats'>
-      No chats found.
-    </div>
+    <div className='no_chats'>No chats found.</div>
   );
 
   return (
     <div className='ChatsList'>
       <h2 className='title_chats'>Chats</h2>
-      <div className='chats'>
-        {chats_list}
-      </div>
+      <div className='chats'>{chats_list}</div>
     </div>
   );
 }

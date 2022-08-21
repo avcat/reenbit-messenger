@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.sass';
 
-import ProfileImage from '../ProfileImage';
 import SearchInChats from '../SearchInChats';
 import ChatsList from '../ChatsList';
 import CurrentChat from '../CurrentChat';
@@ -94,7 +93,6 @@ class App extends React.Component {
     });
 
     const sorted_chats = this.get_sorted_chats(chats);
-    console.log('sorted, new message', message_data);
 
     this.setState({chats: sorted_chats});
     this.write_into_local_storage(chats);
@@ -111,9 +109,7 @@ class App extends React.Component {
     const storage_chats = localStorage.getItem('chats');
     if (storage_chats) {
       const chats = JSON.parse(storage_chats);
-      this.setState({
-        chats: chats
-      });
+      this.setState({chats: chats});
     } else {
       this.write_into_local_storage(this.state.chats);
     }

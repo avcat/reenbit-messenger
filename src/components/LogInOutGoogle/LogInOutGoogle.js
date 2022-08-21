@@ -25,12 +25,11 @@ const LogInOutGoogle = () => {
 
   return (
     <div className={`my_profile ${is_logged_in ? 'logged_in' : ''}`}>
+
       {is_logged_in ? (
         <div className='profile_info'>
           <ProfileImage profile_image_url={profile.imageUrl} />
-          <p className='name'>
-            {profile.name}
-          </p>
+          <p className='name'>{profile.name}</p>
           <GoogleLogout className='log_out' clientId={clientId} buttonText="Log out" onLogoutSuccess={logOut} />
         </div>
       ) : (
@@ -43,6 +42,7 @@ const LogInOutGoogle = () => {
           isSignedIn={true}
         />
       )}
+
     </div>
   );
 }
