@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/reenbit-messenger/static/css/main.47d7131b.css",
-    "main.js": "/reenbit-messenger/static/js/main.897f56b9.js",
+    "main.js": "/reenbit-messenger/static/js/main.800bf125.js",
     "static/media/profile_picture_default.svg": "/reenbit-messenger/static/media/profile_picture_default.8195f538552b9b45c15877afd3434fa2.svg",
     "static/media/search.svg": "/reenbit-messenger/static/media/search.af5ec1ac2df65aeba47357c1393a40a7.svg",
     "static/media/check.svg": "/reenbit-messenger/static/media/check.f3c5ce2055cc99def8d3a026636dfc34.svg",
@@ -9,10 +9,10 @@
     "static/media/send.svg": "/reenbit-messenger/static/media/send.aafb33cf60861e48261e8f610d99ae58.svg",
     "static/media/arrow_left.svg": "/reenbit-messenger/static/media/arrow_left.4b34a38d26a4cf01cf6d52309f48994d.svg",
     "main.47d7131b.css.map": "/reenbit-messenger/static/css/main.47d7131b.css.map",
-    "main.897f56b9.js.map": "/reenbit-messenger/static/js/main.897f56b9.js.map"
+    "main.800bf125.js.map": "/reenbit-messenger/static/js/main.800bf125.js.map"
   },
   "entrypoints": [
     "static/css/main.47d7131b.css",
-    "static/js/main.897f56b9.js"
+    "static/js/main.800bf125.js"
   ]
 }
