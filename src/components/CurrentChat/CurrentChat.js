@@ -69,7 +69,7 @@ const CurrentChat = ({chat, add_to_messages, hide_current_chat}) => {
 
     add_to_messages(message_data, chat.chat_id);
 
-    const delay_seconds = get_random_int_inclusive(10, 15);
+    const delay_seconds = get_random_int_inclusive(1, 5);
     get_response(delay_seconds);
   }
 
